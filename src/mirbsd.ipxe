@@ -1,0 +1,23 @@
+#!ipxe
+
+# MirOS BSD Operating System
+# https://www.mirbsd.org/
+set ipfs_root QmSi5JcpTWoD1sgTJV8rxq9B1KmFGNFnZ3uL3mv5KN79rP
+
+:mirbsd_menu
+menu Please pick a MirOS version
+item mirbsd ${space} MirBSD (i386) Latest
+choose mirbsd_version || goto mirbsd_exit
+goto boot_mirbsd
+
+:boot_mirbsd
+imgfree
+kernel ${ipfs_gateway}/${ipfs_root}/bsd4me.com
+module ${ipfs_gateway}/${ipfs_root}/bsd4me.rd
+module ${ipfs_gateway}/${ipfs_root}/boot.cfg
+boot
+goto mirbsd_exit
+
+:mirbsd_exit
+clear menu
+exit 0

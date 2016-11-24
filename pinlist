@@ -142,6 +142,15 @@ for v in "${DEBIAN_VERSIONS[@]}"; do
 done
 pinroot "debian" "QmXxLHLbJZ5eS1PgqZ25AX1KryJTFWi7EUtB8Nveoj7dtB"
 
+pinbegin "freebsd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"  "10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.2/FreeBSD-10.2-RELEASE-amd64-bootonly-mfsbsd.hd" "10.2/FreeBSD-10.2-RELEASE-amd64-bootonly-mfsbsd.hd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.1/FreeBSD-10.1-RELEASE-i386-bootonly-mfsbsd.hd"  "10.1/FreeBSD-10.1-RELEASE-i386-bootonly-mfsbsd.hd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.1/FreeBSD-10.1-RELEASE-amd64-bootonly-mfsbsd.hd" "10.1/FreeBSD-10.1-RELEASE-amd64-bootonly-mfsbsd.hd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.0/FreeBSD-10.0-RELEASE-i386-bootonly-mfsbsd.hd"  "10.0/FreeBSD-10.0-RELEASE-i386-bootonly-mfsbsd.hd"
+pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.0/FreeBSD-10.0-RELEASE-amd64-bootonly-mfsbsd.hd" "10.0/FreeBSD-10.0-RELEASE-amd64-bootonly-mfsbsd.hd"
+pinroot "freebsd" "QmRAZoUtQVMP8UWnrGiwbPozA45UygeJTCuzebfn8TpcYJ" #No i386
+
 pinbegin "freedos"
 pinget "freedos" "http://www.freedos.org/download/download/fd11src.iso" "fd11src.iso"
 pinroot "freedos" "QmZeqm9JyhWEPyXuTcnFEcWH1w8a91HdpF5meVoAeL1Dwy"
@@ -150,6 +159,21 @@ pinbegin "gentoo"
 pinget "gentoo" "https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204/kernel/download" "linux"
 pinget "gentoo" "https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204/initrd/download" "initrd"
 pinroot "gentoo" "QmXb3cSBd9Bpu8WEpD7QstP7tGzEvB1kQdcbnRNCJakf4B"
+
+pinbegin "mirbsd"
+pinget "mirbsd" "https://www.mirbsd.org/MirOS/current/bsd4me.com"               "bsd4me.com"
+pinget "mirbsd" "https://www.mirbsd.org/MirOS/current/bsd4me.rd"                "bsd4me.rd"
+pinget "mirbsd" "https://www.mirbsd.org/MirOS/webstuff/netboot.xyz/boot.cfg"    "boot.cfg"
+pinroot "mirbsd" "QmSi5JcpTWoD1sgTJV8rxq9B1KmFGNFnZ3uL3mv5KN79rP"
+
+pinbegin "openbsd"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/i386/cd60.iso"         "6.0/i386/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/amd64/cd60.iso"        "6.0/amd64/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/cd60.iso"   "snapshots/i386/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/cd60.iso"  "snapshots/amd64/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/cd59.iso"         "5.9/i386/cd59.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
+pinroot "openbsd" "QmWpXdpAiidSKMTMjvumuXbYcsJpxRyeYVdKPZkLSsCR3M"
 
 pinbegin "utils"
 clonezilla_version=2.4.7-8
