@@ -43,7 +43,7 @@ mv bin/undionly.kpxe ../../build/ipxe/generic-undionly.kpxe
 for ipxe_config in `ls ../../ipxe/disks/`
 do 
   make bin/ipxe.dsk bin/ipxe.iso bin/ipxe.lkrn bin/ipxe.usb bin/ipxe.kpxe bin/undionly.kpxe \
-  EMBED=../../ipxe/disks/$ipxe_config TRUST=ca-ipxe-org.crt,ca-netboot-xyz.crt
+  EMBED=../../ipxe/disks/$ipxe_config
   error_check
   mv bin/ipxe.dsk ../../build/ipxe/$ipxe_config.dsk
   mv bin/ipxe.iso ../../build/ipxe/$ipxe_config.iso
@@ -70,8 +70,6 @@ cd build/
 CURRENT_TIME=`date`
 cat > netboot.xyz-sha256-checksums.txt <<EOF
 # netboot.xyz bootloaders generated at $CURRENT_TIME
-# iPXE Commit: https://github.com/ipxe/ipxe/commit/$IPXE_HASH
-# Travis-CI Job: https://travis-ci.org/antonym/netboot.xyz/builds/$TRAVIS_BUILD_ID
 
 EOF
 

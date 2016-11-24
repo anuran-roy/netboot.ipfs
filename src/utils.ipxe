@@ -1,4 +1,5 @@
 #!ipxe
+set ipfs_root QmUSV82U6pnfAimCFQviLUYq43MxDvZkqDBMvTn7Gz1hmN
 
 menu Utilities - Image Sig Checks: [${img_sigs_enabled}]
 item --gap Utilities:
@@ -27,71 +28,59 @@ chain ${menu}.ipxe || goto utils_exit
 goto utils_exit
 
 :avg
-set util_path download.avg.com/filedir/inst/avg_arl_cdi_all_120_150814a10442.iso
 set util_file avg_arl_cdi_all_120_150814a10442.iso
 goto boot_memdisk
 
 :clonezilla
 set clonezilla_version 2.4.7-8
-set util_path sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/${clonezilla_version}/clonezilla-live-${clonezilla_version}-amd64.iso/download
 set util_file clonezilla-live-${clonezilla_version}-amd64.iso
 goto boot_memdisk
 
 :dban
-set util_path sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download
 set util_file dban-2.3.0_i586.iso
 goto boot_memdisk
 
 :gparted
-set util_path sourceforge.net/projects/gparted/files/gparted-live-stable/0.26.0-1/gparted-live-0.26.0-1-amd64.iso/download
 set util_file gparted-live-0.26.0-1-amd64.iso
 goto boot_memdisk
 
 :grml-full
-set util_path download.grml.org/devel/grml64-full_20160415_netboot_xyz.iso 
 set util_file grml64-full_20160415_netboot_xyz.iso
 goto boot_memdisk
 
 :grml-small
-set util_path download.grml.org/devel/grml64-small_20160415_netboot_xyz.iso
 set util_file grml64-small_20160415_netboot_xyz.iso 
 goto boot_memdisk
 
 :hdt
-set util_path www.hdt-project.org/raw-attachment/wiki/hdt-0.5.0/hdt-0.5.2.iso
 set util_file hdt-0.5.2.iso
 goto boot_memdisk
 
 :memtest-420
-set util_path boot.netboot.xyz/utils/memtest86-4.20.bin
 set util_file memtest86-4.20.bin
 goto boot_memtest
 
 :memtest-501
-set util_path boot.netboot.xyz/utils/memtest86-5.01.bin
 set util_file memtest86-5.01.bin
 goto boot_memtest
 
 :partition-wizard
-set util_path www.partitionwizard.com/download/pwfree91-x64.iso
 set util_file pwfree91-x64.iso
 goto boot_memdisk
 
 :pogostick
-set util_path pogostick.net/~pnh/ntpasswd/cd140201.zip
 set util_file cd140201.zip
 goto boot_memdisk
 
 :supergrub
-set util_path sourceforge.net/projects/supergrub2/files/2.02s4/super_grub2_disk_hybrid_2.02s4.iso/download
 set util_file super_grub2_disk_hybrid_2.02s4.iso
 goto boot_memdisk
 
 :sysrcd
-set sysrcdpath sourceforge.net/projects/netboot-xyz/files/distros/sysresccd-x86/4.8.1
-kernel --name altker64 https://${sysrcdpath}/altker64/download setkmap=no net.ifnames=0 backstore=off
-initrd --name initram.igz https://${sysrcdpath}/initram.igz/download
-initrd --name sysrcd.dat https://${sysrcdpath}/sysrcd.dat/download /sysrcd.dat
+set sysrcdpath ${ipfs_gateway}/${ipfs_root}/sysrcd
+kernel --name altker64 ${sysrcdpath}/altker64 setkmap=no net.ifnames=0 backstore=off
+initrd --name initram.igz ${sysrcdpath}/initram.igz
+initrd --name sysrcd.dat ${sysrcdpath}/sysrcd.dat
 echo
 echo MD5sums:
 md5sum altker64 initram.igz sysrcd.dat
@@ -109,18 +98,27 @@ boot
 goto utils_exit
 
 :ubcd
-set util_path mirror.sysadminguide.net/ubcd/ubcd535.iso
 set util_file ubcd535.iso
 goto boot_memdisk
 
 :boot_memdisk
 imgfree
 kernel ${memdisk} iso raw
-initrd --name ${util_file} http://${util_path}
+initrd --name ${util_file} ${ipfs_gateway}/${ipfs_root}/${util_file}
 echo
 echo MD5sums:
 md5sum memdisk ${util_file}
 iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
+
+:boot_memdiskimg
+imgfree
+kernel ${memdisk} raw
+initrd --name ${util_file} ${ipfs_gateway}/${ipfs_root}/${util_file}
+echo
+echo MD5sums:
+md5sum memdisk ${util_file}
+iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
+
 :verify_sigs
 echo
 echo Checking signatures...
@@ -133,7 +131,7 @@ boot
 goto utils_exit
 
 :boot_memtest
-chain https://${util_path} && goto main_menu ||
+chain ${ipfs_gateway}/${ipfs_root}/${util_file} && goto main_menu ||
 goto utils_exit
 
 :nbxyz-custom

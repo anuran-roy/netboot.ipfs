@@ -6,6 +6,7 @@
 # Note: in order to boot Gentoo via iPXE, the method at http://blog.dastrup.com/?p=12 has been utilized to 
 # to allow for the Gentoo minimal disk to boot.  I've regenerated the latest boot disks and have put
 # them on https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204/
+set ipfs_root QmXb3cSBd9Bpu8WEpD7QstP7tGzEvB1kQdcbnRNCJakf4B
 
 goto ${menu}
 
@@ -17,11 +18,10 @@ choose gentoo_version || goto gentoo_exit
 goto ${gentoo_version}
 
 :20160204
-set gentoopath https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204
 echo Please note the gentoo ISO has been regenerated to work with iPXE
 echo using the method here: http://blog.dastrup.com/?p=12
-kernel --name gentoo-kernel ${gentoopath}/kernel/download root=/dev/ram0 init=/linuxrc loop=/image.squashfs looptype=squashfs cdroot=1 real_root=/
-initrd --name gentoo-initrd.img ${gentoopath}/initrd/download
+kernel --name gentoo-kernel ${ipfs_gateway}/${ipfs_root}/linux root=/dev/ram0 init=/linuxrc loop=/image.squashfs looptype=squashfs cdroot=1 real_root=/
+initrd --name gentoo-initrd.img ${ipfs_gateway}/${ipfs_root}/initrd
 boot
 goto gentoo
 

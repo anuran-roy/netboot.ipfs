@@ -1,0 +1,124 @@
+#!/bin/bash
+
+
+
+log() {
+	echo -e "\e[32m> " $@ "\e[39m" 
+}
+
+pinbegin() {
+	log "Begin processing $1"
+	mkdir -p dltmp/$1
+}
+
+pinget() {
+	log "Getting $1/$3"
+	cd dltmp
+	mkdir -p $(dirname $1/$3)
+	wget -c $2 -O $1/$3
+	# log "Pinning $1/$3"
+	# HASH=$(ipfs add -q "$1/$3")
+	# log "$1/$3 IS $HASH"
+	cd ..
+}
+
+pinroot() {
+	log "Pin $1 root"
+	HASH=$(ipfs add -qr "dltmp/$1" | tr ' ' '\n' | tail -1)
+	log "$1 IS $HASH"
+}
+
+antergos_version=2016.10.23
+
+pinbegin "antergos"
+pinget "antergos" "https://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
+pinroot "antergos" "QmdRmhLf4PYjaU3dyafHcL3jzHzcAhLAxaxggacpUqpYMf"
+
+pinbegin "architect"
+pinget "architect" "https://sourceforge.net/projects/architect-linux/files/latest/download" "architect.iso"
+pinroot "architect" "Qme1Nwp7bsDfY3rEo7RPwB7znKuokh7xEcAtLDGi61iQth"
+
+pinbegin "archlinux"
+ARCH_MIRROR="mirror.rackspace.com"
+ARCH_VERSIONS=("2016.09.03" "2016.10.01" "2016.11.01")
+for v in "${ARCH_VERSIONS[@]}"; do
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/vmlinuz"           "${v}/arch/boot/i686/vmlinuz"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/archiso.img"       "${v}/arch/boot/i686/archiso.img"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/vmlinuz"         "${v}/arch/boot/x86_64/vmlinuz"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/archiso.img"     "${v}/arch/boot/x86_64/archiso.img"
+
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs"         "${v}/arch/x86_64/airootfs.sfs"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.md5"         "${v}/arch/x86_64/airootfs.md5"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs.sig"     "${v}/arch/x86_64/airootfs.sfs.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs"           "${v}/arch/i686/airootfs.sfs"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.md5"           "${v}/arch/i686/airootfs.md5"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs.sig"       "${v}/arch/i686/airootfs.sfs.sig"
+done
+pinroot "archlinux" "QmPC2yKg7gYkPcLT5D78U2z2YroKY17RbpRLn69cbviWMW"
+
+blackarch_version=2016.08.31
+pinbegin "blackarch"
+pinget "blackarch" "https://www.mirrorservice.org/sites/blackarch.org/blackarch/iso/blackarchlinux-netinst-${blackarch_version}-x86_64.iso" "blackarch.iso"
+pinroot "blackarch" "QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR"
+
+pinbegin "centos"
+pinroot "centos"
+
+pinbegin "coreos"
+pinget "coreos" "https://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"        "stable/coreos_production_pxe.vmlinuz"
+pinget "coreos" "https://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"  "stable/coreos_production_pxe_image.cpio.gz"
+pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"          "beta/coreos_production_pxe.vmlinuz"
+pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"    "beta/coreos_production_pxe_image.cpio.gz"
+pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"         "alpha/coreos_production_pxe.vmlinuz"
+pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"   "alpha/coreos_production_pxe_image.cpio.gz"
+pinroot "coreos" "QmcNNnsVjHHdvQXC1ciycyX5X4EesEnDjWkTUsZGD2QpGa"
+
+pinbegin "debian"
+DEBIAN_MIRROR="mirror.rackspace.com"
+DEBIAN_VERSIONS=("jessie" "wheezy" "stretch" "sid")
+DEBIAN_ARCH=("i386" "amd64")
+for v in "${DEBIAN_VERSIONS[@]}"; do
+    for a in "${DEBIAN_ARCH[@]}"; do
+        pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/gtk/debian-installer/${a}/initrd.gz" "debian/dists/${v}/main/installer-${a}/current/images/netboot/gtk/debian-installer/${a}/initrd.gz"
+        pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/gtk/debian-installer/${a}/linux"     "debian/dists/${v}/main/installer-${a}/current/images/netboot/gtk/debian-installer/${a}/linux"
+        pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/initrd.gz"     "debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/initrd.gz"
+        pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"         "debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"
+    done
+done
+pinroot "debian" "QmXxLHLbJZ5eS1PgqZ25AX1KryJTFWi7EUtB8Nveoj7dtB"
+
+pinbegin "freedos"
+pinget "freedos" "http://www.freedos.org/download/download/fd11src.iso" "fd11src.iso"
+pinroot "freedos" "QmZeqm9JyhWEPyXuTcnFEcWH1w8a91HdpF5meVoAeL1Dwy"
+
+pinbegin "gentoo"
+pinget "gentoo" "https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204/kernel/download" "linux"
+pinget "gentoo" "https://sourceforge.net/projects/netboot-xyz/files/distros/gentoo/amd64/20160204/initrd/download" "initrd"
+pinroot "gentoo" "QmXb3cSBd9Bpu8WEpD7QstP7tGzEvB1kQdcbnRNCJakf4B"
+
+pinbegin "utils"
+clonezilla_version=2.4.7-8
+sysrcdpath="sourceforge.net/projects/netboot-xyz/files/distros/sysresccd-x86/4.8.1"
+pinget "utils" "http://download.avg.com/filedir/inst/avg_arl_cdi_all_120_150814a10442.iso"                              "avg_arl_cdi_all_120_150814a10442.iso"
+pinget "utils" "https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/${clonezilla_version}/clonezilla-live-${clonezilla_version}-amd64.iso/download" "clonezilla-live-${clonezilla_version}-amd64.iso"
+pinget "utils" "https://sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download"               "dban-2.3.0_i586.iso"
+pinget "utils" "https://sourceforge.net/projects/gparted/files/gparted-live-stable/0.26.0-1/gparted-live-0.26.0-1-amd64.iso/download" "gparted-live-0.26.0-1-amd64.iso"
+pinget "utils" "http://mirror.23media.de/grml//devel/grml64-full_20160415_netboot_xyz.iso"                              "grml64-full_20160415_netboot_xyz.iso"
+pinget "utils" "http://mirror.23media.de/grml//devel/grml64-small_20160415_netboot_xyz.iso"                             "grml64-small_20160415_netboot_xyz.iso"
+pinget "utils" "http://www.hdt-project.org/raw-attachment/wiki/hdt-0.5.0/hdt-0.5.2.iso"                                 "hdt-0.5.2.iso"
+pinget "utils" "https://boot.netboot.xyz/utils/memtest86-4.20.bin"                                                      "memtest86-4.20.bin"
+pinget "utils" "https://boot.netboot.xyz/utils/memtest86-5.01.bin"                                                      "memtest86-5.01.bin"
+pinget "utils" "https://www.partitionwizard.com/download/pwfree91-x64.iso"                                              "pwfree91-x64.iso"
+pinget "utils" "https://pogostick.net/~pnh/ntpasswd/cd140201.zip"                                                       "cd140201.zip"
+pinget "utils" "https://sourceforge.net/projects/supergrub2/files/2.02s4/super_grub2_disk_hybrid_2.02s4.iso/download"   "super_grub2_disk_hybrid_2.02s4.iso"
+pinget "utils" "https://${sysrcdpath}/altker64/download"                                                                "sysrcd/altker64"
+pinget "utils" "https://${sysrcdpath}/initram.igz/download"                                                             "sysrcd/initram.igz"
+pinget "utils" "https://${sysrcdpath}/sysrcd.dat/download"                                                              "sysrcd/sysrcd.dat"
+pinget "utils" "http://mirror.sysadminguide.net/ubcd/ubcd535.iso"                                                       "ubcd535.iso"
+pinroot "utils" "QmUSV82U6pnfAimCFQviLUYq43MxDvZkqDBMvTn7Gz1hmN"
+
+pinbegin "xenserver"
+pinget "xenserver" "http://downloadns.citrix.com.edgesuite.net/11419/pxe/release/6.5.0/boot/xen"        "boot/xen"
+pinget "xenserver" "http://downloadns.citrix.com.edgesuite.net/11419/pxe/release/6.5.0/boot/vmlinuz"    "boot/vmlinuz"
+pinget "xenserver" "http://downloadns.citrix.com.edgesuite.net/11419/pxe/release/6.5.0/install.img"     "install.img"
+pinroot "xenserver" "Qmenm7Ftf5bDbKUasgs8ErSzC3n5Jz3Mcn1GSgA4A3Cgna"

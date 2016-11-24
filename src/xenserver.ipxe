@@ -2,6 +2,7 @@
 
 # Citrix XenServer Hypervisor
 # http://xenserver.org
+set ipfs_root Qmenm7Ftf5bDbKUasgs8ErSzC3n5Jz3Mcn1GSgA4A3Cgna
 
 goto ${menu} ||
 
@@ -21,9 +22,9 @@ goto boot_xs
 
 :boot_xs
 imgfree
-kernel http://${xs_mirror}/${xs_type}/boot/xen dom0_max_vcpus=1-2 dom0_mem=752M,max:752M com1=115200,8n1 console=com1,vga
-module http://${xs_mirror}/${xs_type}/boot/vmlinuz xencons=hvc console=hvc0 console=tty0 install 
-module http://${xs_mirror}/${xs_type}/install.img
+kernel ${ipfs_gateway}/${ipfs_root}/boot/xen dom0_max_vcpus=1-2 dom0_mem=752M,max:752M com1=115200,8n1 console=com1,vga
+module ${ipfs_gateway}/${ipfs_root}/boot/vmlinuz xencons=hvc console=hvc0 console=tty0 install 
+module ${ipfs_gateway}/${ipfs_root}/install.img
 echo
 echo MD5sums:
 md5sum xen vmlinuz install.img

@@ -2,6 +2,7 @@
 
 # FreeDOS Operating System
 # http://www.freedos.org
+set ipfs_root QmZeqm9JyhWEPyXuTcnFEcWH1w8a91HdpF5meVoAeL1Dwy
 
 :freedos_menu
 menu FreeDOS
@@ -16,7 +17,7 @@ goto freedos_exit
 :freedos_install
 imgfree
 kernel ${memdisk} iso raw
-initrd http://www.freedos.org/download/download/fd11src.iso
+initrd ${ipfs_gateway}/${ipfs_root}/fd11src.iso
 boot
 
 :freedos_exit

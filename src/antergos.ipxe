@@ -2,6 +2,7 @@
 
 # Antergos Operating System
 # https://antergos.com
+set ipfs_root QmdRmhLf4PYjaU3dyafHcL3jzHzcAhLAxaxggacpUqpYMf
 
 goto ${menu}
 
@@ -15,7 +16,7 @@ goto antergos_boot
 
 :antergos_boot
 kernel ${memdisk} iso raw
-initrd http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-${antergos_arch}.iso
+initrd ${ipfs_gateway}/${ipfs_root}/${antergos_arch}.iso
 boot
 goto antergos_exit
 

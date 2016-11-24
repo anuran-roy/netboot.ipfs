@@ -2,6 +2,7 @@
 
 # Arch Linux Operating System
 # http://www.archlinux.org
+set ipfs_root QmPC2yKg7gYkPcLT5D78U2z2YroKY17RbpRLn69cbviWMW
 
 goto ${menu} ||
 
@@ -11,19 +12,19 @@ clear arch_version
 menu ${os} - ${arch} - Image Sig Checks: [${img_sigs_enabled}]
 menu Arch Linux
 item --gap Latest Releases
-item 2016.08.01 2016.08.01
-item 2016.07.01 2016.07.01
-item 2016.06.01 2016.06.01
+item 2016.09.03 2016.09.03
+item 2016.10.01 2016.10.01
+item 2016.11.01 2016.11.01
 choose arch_version || goto archlinux_exit
 goto boot
 
 :boot
 imgfree
 iseq ${arch} i386 && set bootarch i686 || set bootarch x86_64
-set dir archlinux/iso/${arch_version}/arch/boot
-set params initrd=archiso.img archiso_http_srv=http://${mirror}/archlinux/iso/${arch_version}/ archisobasedir=arch verify=y ip=dhcp net.ifnames=0
-kernel http://${mirror}/${dir}/${bootarch}/vmlinuz ${params}
-initrd http://${mirror}/${dir}/${bootarch}/archiso.img
+set dir ${arch_version}/arch/boot
+set params initrd=archiso.img archiso_http_srv=${ipfs_gateway}/${ipfs_root}/${arch_version}/ archisobasedir=arch verify=y ip=dhcp net.ifnames=0
+kernel ${ipfs_gateway}/${ipfs_root}/${dir}/${bootarch}/vmlinuz ${params}
+initrd ${ipfs_gateway}/${ipfs_root}/${dir}/${bootarch}/archiso.img
 echo
 echo MD5sums:
 md5sum vmlinuz archiso.img

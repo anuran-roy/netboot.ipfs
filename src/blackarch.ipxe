@@ -2,6 +2,7 @@
 
 # BlackArch Linux Operating System
 # https://blackarch.org/
+set ipfs_root QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR
 
 goto ${menu}
 
@@ -9,12 +10,12 @@ goto ${menu}
 set os BlackArch Linux
 menu ${os} Installers
 item --gap Official Releases
-item 2016.08.19 ${space} ${os} 2016.08.19
+item 2016.08.31 ${space} ${os} 2016.08.31
 choose blackarch_version || goto blackarch_exit
 goto blackarch_boot
 
 :blackarch_boot
-set blackarch_initrd http://www.mirrorservice.org/sites/blackarch.org/blackarch/iso/blackarchlinux-netinst-${blackarch_version}-x86_64.iso
+set blackarch_initrd ${ipfs_gateway}/${ipfs_root}/blackarch.iso
 kernel ${memdisk} iso raw
 initrd ${blackarch_initrd}
 boot

@@ -2,6 +2,7 @@
 
 # Architect Liunx Operating System
 # http://sourceforge.net/projects/architect-linux/
+set ipfs_root Qme1Nwp7bsDfY3rEo7RPwB7znKuokh7xEcAtLDGi61iQth
 
 goto ${menu}
 
@@ -14,7 +15,7 @@ goto architect_boot
 
 :architect_boot
 kernel ${memdisk} iso raw
-initrd http://sourceforge.net/projects/architect-linux/files/latest/download
+initrd ${ipfs_gateway}/${ipfs_root}/architect.iso
 boot
 goto architect_exit
 

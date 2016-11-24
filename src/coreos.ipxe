@@ -6,6 +6,7 @@
 # iPXE and CoreOS: https://coreos.com/os/docs/latest/booting-with-ipxe.html
 # Setting up Cloud Config: https://github.com/coreos/coreos-cloudinit
 # 64-bit only
+set ipfs_root QmcNNnsVjHHdvQXC1ciycyX5X4EesEnDjWkTUsZGD2QpGa
  
 goto ${menu}
 
@@ -26,9 +27,8 @@ goto coreos_exit
 :beta
 :alpha
 set release ${menu}
-set base-url http://${release}.release.core-os.net/amd64-usr/current
-kernel ${base-url}/coreos_production_pxe.vmlinuz ${coreos_params} console=tty0 console=ttyS0 coreos.autologin=tty1 coreos.autologin=ttyS0
-initrd ${base-url}/coreos_production_pxe_image.cpio.gz
+kernel ${ipfs_gateway}/${ipfs_root}/${release}/coreos_production_pxe.vmlinuz ${coreos_params} console=tty0 console=ttyS0 coreos.autologin=tty1 coreos.autologin=ttyS0
+initrd ${ipfs_gateway}/${ipfs_root}/${release}/coreos_production_pxe_image.cpio.gz
 boot
 goto coreos_exit
 

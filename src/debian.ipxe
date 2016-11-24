@@ -2,6 +2,7 @@
 
 # Debian Operating System
 # http://www.debian.org
+set ipfs_root QmXxLHLbJZ5eS1PgqZ25AX1KryJTFWi7EUtB8Nveoj7dtB
 
 goto ${menu}
 
@@ -75,8 +76,8 @@ goto deb_boot
 :deb_boot
 imgfree
 echo Boot parameters: ${install_params} -- quiet ${params}
-kernel http://${debian_mirror}/${dir}/linux ${install_params} ${netcfg} ${mirrorcfg} -- quiet ${params} initrd=initrd.gz
-initrd http://${debian_mirror}/${dir}/initrd.gz
+kernel ${ipfs_gateway}/${ipfs_root}/${dir}/linux ${install_params} ${netcfg} ${mirrorcfg} -- quiet ${params} initrd=initrd.gz
+initrd ${ipfs_gateway}/${ipfs_root}/${dir}/initrd.gz
 echo
 echo MD5sums:
 md5sum linux initrd.gz
