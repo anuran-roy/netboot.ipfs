@@ -7,22 +7,13 @@ menu Linux Installers - Current Arch [ ${arch} ]
 iseq ${arch} x86_64 && set arch_a amd64 || set arch_a ${arch}
 item --gap Popular Linux Operating Systems:
 item archlinux ${space} Arch Linux
-item centos ${space} CentOS 
 item debian ${space} Debian
-item fedora ${space} Fedora
-item mageia ${space} Mageia
-item manjaro ${space} Manjaro Linux
-item opensuse ${space} openSUSE
 item ubuntu ${space} Ubuntu
 item --gap All Others:
 item antergos ${space} Antergos
 item architect ${space} Architect Linux
 item coreos ${space} CoreOS
 item gentoo ${space} Gentoo Linux
-item rancheros ${space} RancherOS
-item scientific ${space} Scientific
-item slackware ${space} Slackware
-item tinycore ${space} Tiny Core Linux
 choose menu || goto linux_exit
 echo ${cls}
 goto ${menu} ||
