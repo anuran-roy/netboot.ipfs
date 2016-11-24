@@ -86,11 +86,11 @@ pinroot() {
     esac
 }
 
-antergos_version=2016.10.23
+antergos_version=2016.11.20
 
 pinbegin "antergos"
-pinget "antergos" "https://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
-pinroot "antergos" "QmdRmhLf4PYjaU3dyafHcL3jzHzcAhLAxaxggacpUqpYMf"
+pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
+pinroot "antergos" "QmTAUq6nYASr9ngifBQZV1kkyHJ5hJS4kxbLEgSMcnRcyx"
 
 pinbegin "architect"
 pinget "architect" "https://sourceforge.net/projects/architect-linux/files/latest/download" "architect.iso"
@@ -174,6 +174,11 @@ pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/cd60.iso"  
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/cd59.iso"         "5.9/i386/cd59.iso"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
 pinroot "openbsd" "QmWpXdpAiidSKMTMjvumuXbYcsJpxRyeYVdKPZkLSsCR3M"
+
+pinbegin "parrotsec"
+parrotsec_version=3.2
+pinget "parrotsec" "http://cloudflare.archive.parrotsec.org/parrot/pool/iso/netinstall/parrot-netinst-${parrotsec_version}-amd64.iso" "parrot-netinst-${parrotsec_version}-amd64.iso"
+pinroot "parrotsec" "QmTPaVtvtUxSk8bbdDPngKxjPdX5CcJvS7pDZ64z7zFf36"
 
 pinbegin "utils"
 clonezilla_version=2.4.7-8
