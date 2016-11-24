@@ -1,6 +1,29 @@
 #!/bin/bash
 
+MODE="ipfs"
+CUR="ipfs"
 
+while getopts "hwi" opt; do
+  case $opt in
+    h)
+      echo "./pinlist [-hwi]" >&2
+      echo "    -h  This help"
+      echo "    -w  Download from WWW"
+      echo "    -i  Interactive"
+      exit 0
+      ;;
+    w)
+      MODE="www"
+      CUR="www"
+      ;;
+    i)
+      MODE="interactive"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
 
 log() {
 	echo -e "\e[32m> " $@ "\e[39m" 
@@ -9,23 +32,58 @@ log() {
 pinbegin() {
 	log "Begin processing $1"
 	mkdir -p dltmp/$1
+    case $MODE in
+        interactive)
+            IOPTS=("skip" "ipfs" "www")
+            select opt in "${IOPTS[@]}"; do case $opt in
+                "skip")
+                    CUR="skip"
+                    break
+                    ;;
+                "ipfs")
+                    CUR="ipfs"
+                    break
+                    ;;
+                "www")
+                    CUR="www"
+                    break
+                    ;;
+                *) echo "invalid option";;
+            esac; done
+            ;;
+    esac
 }
 
 pinget() {
-	log "Getting $1/$3"
-	cd dltmp
-	mkdir -p $(dirname $1/$3)
-	wget -c $2 -O $1/$3
-	# log "Pinning $1/$3"
-	# HASH=$(ipfs add -q "$1/$3")
-	# log "$1/$3 IS $HASH"
-	cd ..
+    case $CUR in
+        www)
+            log "Getting $1/$3"
+            cd dltmp
+            mkdir -p $(dirname $1/$3)
+            wget -c $2 -O $1/$3
+            # log "Pinning $1/$3"
+            # HASH=$(ipfs add -q "$1/$3")
+            # log "$1/$3 IS $HASH"
+            cd ..
+            ;;
+        ipfs)
+            ;;
+    esac	
 }
 
 pinroot() {
-	log "Pin $1 root"
-	HASH=$(ipfs add -qr "dltmp/$1" | tr ' ' '\n' | tail -1)
-	log "$1 IS $HASH"
+	
+    case $CUR in
+        www)
+            log "Pin $1 root"
+            HASH=$(ipfs add -qr "dltmp/$1" | tr ' ' '\n' | tail -1)
+            log "$1 IS $HASH"
+            ;;
+        ipfs)
+            log "Pin $1 from $2"
+            ipfs pin add $2
+            ;;
+    esac
 }
 
 antergos_version=2016.10.23
@@ -60,9 +118,6 @@ blackarch_version=2016.08.31
 pinbegin "blackarch"
 pinget "blackarch" "https://www.mirrorservice.org/sites/blackarch.org/blackarch/iso/blackarchlinux-netinst-${blackarch_version}-x86_64.iso" "blackarch.iso"
 pinroot "blackarch" "QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR"
-
-pinbegin "centos"
-pinroot "centos"
 
 pinbegin "coreos"
 pinget "coreos" "https://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"        "stable/coreos_production_pxe.vmlinuz"
