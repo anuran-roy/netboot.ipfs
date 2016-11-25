@@ -1,0 +1,46 @@
+#!ipxe
+
+# OpenSUSE Operating System
+# http://opensuse.org
+# TODO: full ipfs mirror:
+# wget -c ftp://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/ -r -np
+
+set ipfs_root QmZZcRiSUkrUU88puLhJTTWTaoboZFi5h7SEvSLXBtvdoX
+
+menu openSUSE - ${arch} - Image Sig Checks: [${img_sigs_enabled}]
+item 42.2 openSUSE 42.2
+item 42.1 openSUSE 42.1
+item 13.2 openSUSE 13.2
+item 13.1 openSUSE 13.1
+item 12.3 openSUSE 12.3
+item 12.2 openSUSE 12.2
+item tumbleweed openSUSE tumbleweed
+choose version || goto opensuse_exit
+set dir ${version}/repo/oss
+set instdir opensuse/distribution/${dir}
+iseq ${version} 42.1 && set instdir opensuse/distribution/leap/42.1/repo/oss && set arch x86_64 ||
+iseq ${version} 42.2 && set instdir opensuse/distribution/leap/42.2/repo/oss && set arch x86_64 ||
+iseq ${version} tumbleweed && set mirror download.opensuse.org && set instdir ${version}/repo/oss ||
+
+imgfree
+kernel ${ipfs_gateway}/${ipfs_root}/${dir}/boot/${arch}/loader/linux
+initrd ${ipfs_gateway}/${ipfs_root}/${dir}/boot/${arch}/loader/initrd
+imgargs linux netsetup=dhcp install=http://${mirror}/${instdir} ${params} ${netcfg}
+echo
+echo MD5sums:
+md5sum linux initrd
+iseq ${img_sigs_enabled} true && iseq ${version} tumbleweed && goto skip_sigs ||
+iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
+:verify_sigs
+echo
+echo Checking signatures...
+imgverify linux ${sigs}${dir}/boot/${arch}/loader/linux.sig || goto error
+imgverify initrd ${sigs}${dir}/boot/${arch}/loader/initrd.sig || goto error
+echo Signatures verified!
+echo
+:skip_sigs
+boot
+
+:opensuse_exit
+clear menu
+exit 0

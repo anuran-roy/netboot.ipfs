@@ -175,6 +175,37 @@ pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/cd59.iso"         
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
 pinroot "openbsd" "QmWpXdpAiidSKMTMjvumuXbYcsJpxRyeYVdKPZkLSsCR3M"
 
+pinbegin "opensuse"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/i386/loader/linux"     "12.2/repo/oss/boot/i386/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/i386/loader/initrd"    "12.2/repo/oss/boot/i386/loader/initrd"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/x86_64/loader/linux"   "12.2/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/x86_64/loader/initrd"  "12.2/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.3/repo/oss/boot/i386/loader/linux"     "12.3/repo/oss/boot/i386/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.3/repo/oss/boot/i386/loader/initrd"    "12.3/repo/oss/boot/i386/loader/initrd"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.3/repo/oss/boot/x86_64/loader/linux"   "12.3/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.3/repo/oss/boot/x86_64/loader/initrd"  "12.3/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.1/repo/oss/boot/i386/loader/linux"     "13.1/repo/oss/boot/i386/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.1/repo/oss/boot/i386/loader/initrd"    "13.1/repo/oss/boot/i386/loader/initrd"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.1/repo/oss/boot/x86_64/loader/linux"   "13.1/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.1/repo/oss/boot/x86_64/loader/initrd"  "13.1/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/boot/i386/loader/linux"     "13.2/repo/oss/boot/i386/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/boot/i386/loader/initrd"    "13.2/repo/oss/boot/i386/loader/initrd"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/boot/x86_64/loader/linux"   "13.2/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/boot/x86_64/loader/initrd"  "13.2/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/leap/42.1/repo/oss/boot/x86_64/loader/linux"   "42.1/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/leap/42.1/repo/oss/boot/x86_64/loader/initrd"  "42.1/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/leap/42.2/repo/oss/boot/x86_64/loader/linux"   "42.2/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/leap/42.2/repo/oss/boot/x86_64/loader/initrd"  "42.2/repo/oss/boot/x86_64/loader/initrd"
+
+pinget "opensuse" "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"   "tumbleweed/repo/oss/boot/x86_64/loader/linux"
+pinget "opensuse" "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd"  "tumbleweed/repo/oss/boot/x86_64/loader/initrd"
+pinroot "opensuse" "QmZZcRiSUkrUU88puLhJTTWTaoboZFi5h7SEvSLXBtvdoX"
+
 pinbegin "parrotsec"
 parrotsec_version=3.2
 pinget "parrotsec" "http://cloudflare.archive.parrotsec.org/parrot/pool/iso/netinstall/parrot-netinst-${parrotsec_version}-amd64.iso" "parrot-netinst-${parrotsec_version}-amd64.iso"
