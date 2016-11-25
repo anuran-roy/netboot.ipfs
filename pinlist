@@ -3,18 +3,23 @@
 MODE="ipfs"
 CUR="ipfs"
 
-while getopts "hwi" opt; do
+while getopts "hwic" opt; do
   case $opt in
     h)
       echo "./pinlist [-hwi]" >&2
       echo "    -h  This help"
       echo "    -w  Download from WWW"
       echo "    -i  Interactive"
+      echo "    -c  Check hashes"
       exit 0
       ;;
     w)
       MODE="www"
       CUR="www"
+      ;;
+    c)
+      MODE="check"
+      CUR="check"
       ;;
     i)
       MODE="interactive"
@@ -29,12 +34,16 @@ log() {
 	echo -e "\e[32m> " $@ "\e[39m" 
 }
 
+logerr() {
+    echo -e "\e[31m> " $@ "\e[39m" 
+}
+
 pinbegin() {
 	log "Begin processing $1"
 	mkdir -p dltmp/$1
     case $MODE in
         interactive)
-            IOPTS=("skip" "ipfs" "www")
+            IOPTS=("skip" "ipfs" "www" "check")
             select opt in "${IOPTS[@]}"; do case $opt in
                 "skip")
                     CUR="skip"
@@ -46,6 +55,10 @@ pinbegin() {
                     ;;
                 "www")
                     CUR="www"
+                    break
+                    ;;
+                "check")
+                    CUR="check"
                     break
                     ;;
                 *) echo "invalid option";;
@@ -83,6 +96,14 @@ pinroot() {
             log "Pin $1 from $2"
             ipfs pin add $2
             ;;
+        check)
+            HASH=$(ipfs add -nqr "dltmp/$1" | tr ' ' '\n' | tail -1)
+            if [ "$HASH" == "$2" ]; then
+                log "OK: $1 is $2"
+            else
+                logerr "!! $1 changed to $HASH"
+            fi
+            ;;
     esac
 }
 
@@ -90,11 +111,11 @@ antergos_version=2016.11.20
 
 pinbegin "antergos"
 pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
-pinroot "antergos" "QmTAUq6nYASr9ngifBQZV1kkyHJ5hJS4kxbLEgSMcnRcyx"
+pinroot "antergos" "QmcUiUMtrTXFgw5NbeV8x7bZyBY8CzuJwpGABDg4YQEDDm"
 
 pinbegin "architect"
 pinget "architect" "https://sourceforge.net/projects/architect-linux/files/latest/download" "architect.iso"
-pinroot "architect" "Qme1Nwp7bsDfY3rEo7RPwB7znKuokh7xEcAtLDGi61iQth"
+pinroot "architect" "QmSNkGZVi3B5dcZNgAbsjY2Me9H9m4M9KXWpwH3Vw5rYMi"
 
 pinbegin "archlinux"
 ARCH_MIRROR="mirror.rackspace.com"
@@ -126,7 +147,7 @@ pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_produ
 pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"    "beta/coreos_production_pxe_image.cpio.gz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"         "alpha/coreos_production_pxe.vmlinuz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"   "alpha/coreos_production_pxe_image.cpio.gz"
-pinroot "coreos" "QmcNNnsVjHHdvQXC1ciycyX5X4EesEnDjWkTUsZGD2QpGa"
+pinroot "coreos" "QmPLk8Ma6h2DGLWxyyfouuh7uJFRm7DX5k2gKAcLauitan"
 
 pinbegin "debian"
 DEBIAN_MIRROR="mirror.rackspace.com"
@@ -140,7 +161,7 @@ for v in "${DEBIAN_VERSIONS[@]}"; do
         pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"         "debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"
     done
 done
-pinroot "debian" "QmXxLHLbJZ5eS1PgqZ25AX1KryJTFWi7EUtB8Nveoj7dtB"
+pinroot "debian" "QmSKZyd7rxTQPpCuc9QCLrdL9zvbBN4Z9tfKs8zvJUTMac"
 
 pinbegin "freebsd"
 pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"  "10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"
@@ -173,7 +194,7 @@ pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/cd60.iso"   
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/cd60.iso"  "snapshots/amd64/cd60.iso"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/cd59.iso"         "5.9/i386/cd59.iso"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
-pinroot "openbsd" "QmWpXdpAiidSKMTMjvumuXbYcsJpxRyeYVdKPZkLSsCR3M"
+pinroot "openbsd" "QmXYRKaTvCkRbRZiarFzGGBaAsNpMNqRkccudDc7XyFQsC"
 
 pinbegin "opensuse"
 pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/i386/loader/linux"     "12.2/repo/oss/boot/i386/loader/linux"

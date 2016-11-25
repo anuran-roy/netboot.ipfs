@@ -2,7 +2,7 @@
 
 # Debian Operating System
 # http://www.debian.org
-set ipfs_root QmXxLHLbJZ5eS1PgqZ25AX1KryJTFWi7EUtB8Nveoj7dtB
+set ipfs_root QmSKZyd7rxTQPpCuc9QCLrdL9zvbBN4Z9tfKs8zvJUTMac
 
 goto ${menu}
 

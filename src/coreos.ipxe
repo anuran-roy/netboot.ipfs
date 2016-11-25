@@ -6,7 +6,7 @@
 # iPXE and CoreOS: https://coreos.com/os/docs/latest/booting-with-ipxe.html
 # Setting up Cloud Config: https://github.com/coreos/coreos-cloudinit
 # 64-bit only
-set ipfs_root QmcNNnsVjHHdvQXC1ciycyX5X4EesEnDjWkTUsZGD2QpGa
+set ipfs_root QmPLk8Ma6h2DGLWxyyfouuh7uJFRm7DX5k2gKAcLauitan
  
 goto ${menu}
 

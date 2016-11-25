@@ -2,7 +2,7 @@
 
 # Architect Liunx Operating System
 # http://sourceforge.net/projects/architect-linux/
-set ipfs_root Qme1Nwp7bsDfY3rEo7RPwB7znKuokh7xEcAtLDGi61iQth
+set ipfs_root QmSNkGZVi3B5dcZNgAbsjY2Me9H9m4M9KXWpwH3Vw5rYMi
 
 goto ${menu}
 
