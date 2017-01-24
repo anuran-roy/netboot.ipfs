@@ -22,7 +22,7 @@ git clone --depth 1 https://github.com/ipxe/ipxe.git ipxe_build
 cp ipxe/local/* ipxe_build/src/config/local/
 
 # copy certs into source tree
-cp script/*.crt ipxe_build/src/
+# cp script/*.crt ipxe_build/src/
 
 # build iPXE disks
 cd ipxe_build/src
@@ -84,15 +84,15 @@ mv ../netboot.xyz-sha256-checksums.txt .
 cd ../..
 
 # generate signatures for netboot.xyz source files
-mkdir sigs
-for src_file in `ls src`
-do
-  openssl cms -sign -binary -noattr -in src/$src_file \
-  -signer script/codesign.crt -inkey script/codesign.key -certfile script/ca-netboot-xyz.crt -outform DER \
-  -out sigs/$src_file.sig
-  echo Generated signature for $src_file...
-done
-mv sigs src/
+# mkdir sigs
+# for src_file in `ls src`
+# do
+#   openssl cms -sign -binary -noattr -in src/$src_file \
+#   -signer script/codesign.crt -inkey script/codesign.key -certfile script/ca-netboot-xyz.crt -outform DER \
+#   -out sigs/$src_file.sig
+#   echo Generated signature for $src_file...
+# done
+# mv sigs src/
 
 # delete index.html so that we don't overwrite existing content type
 rm src/index.html
