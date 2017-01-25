@@ -107,11 +107,12 @@ pinroot() {
     esac
 }
 
-antergos_version=2016.11.20
+antergos_version=17.1
 
 pinbegin "antergos"
 pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
-pinroot "antergos" "QmcUiUMtrTXFgw5NbeV8x7bZyBY8CzuJwpGABDg4YQEDDm"
+pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso.sig" "x86_64.iso.sig"
+pinroot "antergos" "QmSfzSeNhHkLpahad5gTY5CiND3Mb9qfjipJJwQwhTRGW3"
 
 pinbegin "architect"
 pinget "architect" "https://sourceforge.net/projects/architect-linux/files/latest/download" "architect.iso"
@@ -119,23 +120,27 @@ pinroot "architect" "QmSNkGZVi3B5dcZNgAbsjY2Me9H9m4M9KXWpwH3Vw5rYMi"
 
 pinbegin "archlinux"
 ARCH_MIRROR="mirror.rackspace.com"
-ARCH_VERSIONS=("2016.09.03" "2016.10.01" "2016.11.01")
+ARCH_VERSIONS=("2016.11.01" "2016.12.01" "2017.01.01")
 for v in "${ARCH_VERSIONS[@]}"; do
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/vmlinuz"           "${v}/arch/boot/i686/vmlinuz"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/archiso.img"       "${v}/arch/boot/i686/archiso.img"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/vmlinuz"         "${v}/arch/boot/x86_64/vmlinuz"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/archiso.img"     "${v}/arch/boot/x86_64/archiso.img"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/vmlinuz"                   "${v}/arch/boot/i686/vmlinuz"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/vmlinuz.ipxe.sig"          "${v}/arch/boot/i686/vmlinuz.ipke.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/archiso.img"               "${v}/arch/boot/i686/archiso.img"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/i686/archiso.img.ipxe.sig"      "${v}/arch/boot/i686/archiso.img.ipxe.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/vmlinuz"                 "${v}/arch/boot/x86_64/vmlinuz"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/vmlinuz"                 "${v}/arch/boot/x86_64/vmlinuz.ipxe.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/archiso.img"             "${v}/arch/boot/x86_64/archiso.img"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/boot/x86_64/archiso.img.ipxe.sig"    "${v}/arch/boot/x86_64/archiso.img.ipxe.sig"
 
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs"         "${v}/arch/x86_64/airootfs.sfs"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.md5"         "${v}/arch/x86_64/airootfs.md5"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs.sig"     "${v}/arch/x86_64/airootfs.sfs.sig"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs"           "${v}/arch/i686/airootfs.sfs"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.md5"           "${v}/arch/i686/airootfs.md5"
-    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs.sig"       "${v}/arch/i686/airootfs.sfs.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs"             "${v}/arch/x86_64/airootfs.sfs"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.md5"             "${v}/arch/x86_64/airootfs.md5"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/x86_64/airootfs.sfs.sig"         "${v}/arch/x86_64/airootfs.sfs.sig"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs"               "${v}/arch/i686/airootfs.sfs"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.md5"               "${v}/arch/i686/airootfs.md5"
+    pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs.sig"           "${v}/arch/i686/airootfs.sfs.sig"
 done
-pinroot "archlinux" "QmPC2yKg7gYkPcLT5D78U2z2YroKY17RbpRLn69cbviWMW"
+pinroot "archlinux" "QmPKVZuUqTsgdg5eNGoTqDBijRYzqxzBEADT5JJjAGTupN"
 
-blackarch_version=2016.08.31
+blackarch_version=2016.12.29
 pinbegin "blackarch"
 pinget "blackarch" "https://www.mirrorservice.org/sites/blackarch.org/blackarch/iso/blackarchlinux-netinst-${blackarch_version}-x86_64.iso" "blackarch.iso"
 pinroot "blackarch" "QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR"
@@ -147,7 +152,7 @@ pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_produ
 pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"    "beta/coreos_production_pxe_image.cpio.gz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"         "alpha/coreos_production_pxe.vmlinuz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"   "alpha/coreos_production_pxe_image.cpio.gz"
-pinroot "coreos" "QmPLk8Ma6h2DGLWxyyfouuh7uJFRm7DX5k2gKAcLauitan"
+pinroot "coreos" "QmP2JnJYbkoWJqxxE8z5cH8jH2jynkn9PiNqE1dJoJ4BRE"
 
 pinbegin "debian"
 DEBIAN_MIRROR="mirror.rackspace.com"
@@ -161,7 +166,7 @@ for v in "${DEBIAN_VERSIONS[@]}"; do
         pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"         "debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"
     done
 done
-pinroot "debian" "QmSKZyd7rxTQPpCuc9QCLrdL9zvbBN4Z9tfKs8zvJUTMac"
+pinroot "debian" "QmaR8BE3zZtAC3vX9tJeHg6hyKSzdSHqWJYhSpBRprWKVB"
 
 pinbegin "freebsd"
 pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"  "10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"
@@ -189,12 +194,29 @@ pinroot "mirbsd" "QmSi5JcpTWoD1sgTJV8rxq9B1KmFGNFnZ3uL3mv5KN79rP"
 
 pinbegin "openbsd"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/i386/cd60.iso"         "6.0/i386/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/i386/SHA256"           "6.0/i386/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/i386/SHA256.sig"       "6.0/i386/SHA256.sig"
+
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/amd64/cd60.iso"        "6.0/amd64/cd60.iso"
-pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/cd60.iso"   "snapshots/i386/cd60.iso"
-pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/cd60.iso"  "snapshots/amd64/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/amd64/SHA256"          "6.0/amd64/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/6.0/amd64/SHA256.sig"      "6.0/amd64/SHA256.sig"
+
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/cd60.iso"      "snapshots/i386/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/SHA256"        "snapshots/i386/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/i386/SHA256.sig"    "snapshots/i386/SHA256.sig"
+
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/cd60.iso"      "snapshots/amd64/cd60.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/SHA256"        "snapshots/amd64/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/snapshots/amd64/SHA256.sig"    "snapshots/amd64/SHA256.sig"
+
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/cd59.iso"         "5.9/i386/cd59.iso"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/SHA256"           "5.9/i386/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/SHA256.sig"       "5.9/i386/SHA256.sig"
+
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
-pinroot "openbsd" "QmXYRKaTvCkRbRZiarFzGGBaAsNpMNqRkccudDc7XyFQsC"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/SHA256"          "5.9/amd64/SHA256"
+pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/SHA256.sig"      "5.9/amd64/SHA256.sig"
+pinroot "openbsd" "QmPKoPpTyXx1DWMp5YGpkhjj9j9JwkeuLogsFqg8UgMBE4"
 
 pinbegin "opensuse"
 pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/i386/loader/linux"     "12.2/repo/oss/boot/i386/loader/linux"
@@ -228,9 +250,10 @@ pinget "opensuse" "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/
 pinroot "opensuse" "QmZZcRiSUkrUU88puLhJTTWTaoboZFi5h7SEvSLXBtvdoX"
 
 pinbegin "parrotsec"
-parrotsec_version=3.2
-pinget "parrotsec" "http://cloudflare.archive.parrotsec.org/parrot/pool/iso/netinstall/parrot-netinst-${parrotsec_version}-amd64.iso" "parrot-netinst-${parrotsec_version}-amd64.iso"
-pinroot "parrotsec" "QmTPaVtvtUxSk8bbdDPngKxjPdX5CcJvS7pDZ64z7zFf36"
+parrotsec_version=3.4.1
+pinget "parrotsec" "http://mirrordirector.archive.parrotsec.org/parrot/pool/iso/3.4.1/Parrot-netboot-${parrotsec_version}_amd64.iso" "Parrot-netboot-${parrotsec_version}_amd64.iso"
+
+pinroot "parrotsec" "QmTNiGnyyraFSNiQTHNVGZqnheVsD6JaFkeDQm98FM2Roo"
 
 pinbegin "utils"
 clonezilla_version=2.4.7-8

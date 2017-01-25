@@ -2,13 +2,13 @@
 
 # Antergos Operating System
 # https://antergos.com
-set ipfs_root QmcUiUMtrTXFgw5NbeV8x7bZyBY8CzuJwpGABDg4YQEDDm
+set ipfs_root QmSfzSeNhHkLpahad5gTY5CiND3Mb9qfjipJJwQwhTRGW3
 
 goto ${menu}
 
 :antergos
 set os Antergos
-set antergos_version 2016.11.20
+set antergos_version 17.1
 menu ${os} Installers
 item x86_64 ${space} ${os} ${antergos_version} Minimal 64bit [ISO]
 choose antergos_arch || goto antergos_exit
