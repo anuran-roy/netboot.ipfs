@@ -2,7 +2,7 @@
 
 # OpenBSD Operating System
 # http://www.openbsd.org
-set ipfs_root QmXYRKaTvCkRbRZiarFzGGBaAsNpMNqRkccudDc7XyFQsC
+set ipfs_root QmURkhDNJi9ZgouwD7HVB1uEn5YXjibCiBdFHkak9M4BAo
 
 :openbsd_menu
 menu OpenBSD

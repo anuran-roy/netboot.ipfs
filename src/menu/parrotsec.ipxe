@@ -2,7 +2,7 @@
 
 # Parrot Security Linux
 # https://www.parrotsec.org
-set ipfs_root QmTPaVtvtUxSk8bbdDPngKxjPdX5CcJvS7pDZ64z7zFf36
+set ipfs_root QmWMedjnaY8sexzFYRRKf2oq6HR1rsn7UF7DHxPDsKf6C2
 
 goto ${menu}
 

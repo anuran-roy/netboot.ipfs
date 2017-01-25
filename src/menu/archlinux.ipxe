@@ -2,7 +2,7 @@
 
 # Arch Linux Operating System
 # http://www.archlinux.org
-set ipfs_root QmPC2yKg7gYkPcLT5D78U2z2YroKY17RbpRLn69cbviWMW
+set ipfs_root QmaQW2AWCfdYd63wRo6ndotvwQbUXjtLrFcGNRbQ3HEHq8
 
 goto ${menu} ||
 

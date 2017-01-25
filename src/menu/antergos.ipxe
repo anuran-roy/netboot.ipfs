@@ -2,7 +2,7 @@
 
 # Antergos Operating System
 # https://antergos.com
-set ipfs_root QmSfzSeNhHkLpahad5gTY5CiND3Mb9qfjipJJwQwhTRGW3
+set ipfs_root QmcdEKcFC76iu3gpJNA4LkZigDvkXLCXfHRWFthiXaCKeY
 
 goto ${menu}
 

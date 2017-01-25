@@ -43,8 +43,8 @@ echo Attempting chainload of netboot...
 goto menu || goto failsafe
 
 :menu
-set conn_type http
-chain --autofree http://netboot.local/menu.ipxe || echo ${HTTP_ERR}
+set conn_type <<conntype>>
+chain --autofree <<conntype>>://<<ipfs_gateway>>/<<ipfs_hash>>/menu.ipxe || echo ${HTTP_ERR}
 goto localboot
 
 :localboot

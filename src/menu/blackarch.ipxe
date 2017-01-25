@@ -2,7 +2,7 @@
 
 # BlackArch Linux Operating System
 # https://blackarch.org/
-set ipfs_root QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR
+set ipfs_root QmeqEoYw8tFd2g5uNxa3DrKFrawM5GLXxMFkYX3maNWXsx
 
 goto ${menu}
 

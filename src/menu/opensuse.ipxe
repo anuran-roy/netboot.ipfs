@@ -5,7 +5,7 @@
 # TODO: full ipfs mirror:
 # wget -c ftp://mirror.rackspace.com/opensuse/distribution/13.2/repo/oss/ -r -np
 
-set ipfs_root QmZZcRiSUkrUU88puLhJTTWTaoboZFi5h7SEvSLXBtvdoX
+set ipfs_root QmXc9Bh86vxSEBk1aN7xixbBEPCW8tv5U2dvEanjPSTdQh
 
 menu openSUSE - ${arch} - Image Sig Checks: [${img_sigs_enabled}]
 item 42.2 openSUSE 42.2

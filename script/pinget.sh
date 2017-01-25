@@ -112,7 +112,7 @@ antergos_version=17.1
 pinbegin "antergos"
 pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso" "x86_64.iso"
 pinget "antergos" "http://antergos.x86innovations.com/iso/release/antergos-minimal-${antergos_version}-x86_64.iso.sig" "x86_64.iso.sig"
-pinroot "antergos" "QmSfzSeNhHkLpahad5gTY5CiND3Mb9qfjipJJwQwhTRGW3"
+pinroot "antergos" "QmcdEKcFC76iu3gpJNA4LkZigDvkXLCXfHRWFthiXaCKeY"
 
 pinbegin "architect"
 pinget "architect" "https://sourceforge.net/projects/architect-linux/files/latest/download" "architect.iso"
@@ -138,12 +138,12 @@ for v in "${ARCH_VERSIONS[@]}"; do
     pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.md5"               "${v}/arch/i686/airootfs.md5"
     pinget "archlinux" "https://${ARCH_MIRROR}/archlinux/iso/${v}/arch/i686/airootfs.sfs.sig"           "${v}/arch/i686/airootfs.sfs.sig"
 done
-pinroot "archlinux" "QmPKVZuUqTsgdg5eNGoTqDBijRYzqxzBEADT5JJjAGTupN"
+pinroot "archlinux" "QmaQW2AWCfdYd63wRo6ndotvwQbUXjtLrFcGNRbQ3HEHq8"
 
 blackarch_version=2016.12.29
 pinbegin "blackarch"
 pinget "blackarch" "https://www.mirrorservice.org/sites/blackarch.org/blackarch/iso/blackarchlinux-netinst-${blackarch_version}-x86_64.iso" "blackarch.iso"
-pinroot "blackarch" "QmRTbyjvkr7TsuAV8LEpasfeDXLz14Ci3r26z1n9XPyXAR"
+pinroot "blackarch" "QmeqEoYw8tFd2g5uNxa3DrKFrawM5GLXxMFkYX3maNWXsx"
 
 pinbegin "coreos"
 pinget "coreos" "https://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"        "stable/coreos_production_pxe.vmlinuz"
@@ -152,7 +152,7 @@ pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_produ
 pinget "coreos" "https://beta.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"    "beta/coreos_production_pxe_image.cpio.gz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz"         "alpha/coreos_production_pxe.vmlinuz"
 pinget "coreos" "https://alpha.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz"   "alpha/coreos_production_pxe_image.cpio.gz"
-pinroot "coreos" "QmP2JnJYbkoWJqxxE8z5cH8jH2jynkn9PiNqE1dJoJ4BRE"
+pinroot "coreos" "QmcNTZZMdJmo3xcZesyqovFG2zznznhTeLtiQSb91E4hcq"
 
 pinbegin "debian"
 DEBIAN_MIRROR="mirror.rackspace.com"
@@ -166,7 +166,7 @@ for v in "${DEBIAN_VERSIONS[@]}"; do
         pinget "debian" "https://${DEBIAN_MIRROR}/debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"         "debian/dists/${v}/main/installer-${a}/current/images/netboot/debian-installer/${a}/linux"
     done
 done
-pinroot "debian" "QmaR8BE3zZtAC3vX9tJeHg6hyKSzdSHqWJYhSpBRprWKVB"
+pinroot "debian" "QmYiGyZbVYTJfWX4KgVPs16qH8N8oLvBCEk6RQSJNDxSpE"
 
 pinbegin "freebsd"
 pinget "freebsd" "http://boot.rackspace.com/distros/freebsd/10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"  "10.2/FreeBSD-10.2-RELEASE-i386-bootonly-mfsbsd.hd"
@@ -216,7 +216,7 @@ pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/i386/SHA256.sig"       
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/cd59.iso"        "5.9/amd64/cd59.iso"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/SHA256"          "5.9/amd64/SHA256"
 pinget "openbsd" "http://ftp.openbsd.org/pub/OpenBSD/5.9/amd64/SHA256.sig"      "5.9/amd64/SHA256.sig"
-pinroot "openbsd" "QmPKoPpTyXx1DWMp5YGpkhjj9j9JwkeuLogsFqg8UgMBE4"
+pinroot "openbsd" "QmURkhDNJi9ZgouwD7HVB1uEn5YXjibCiBdFHkak9M4BAo"
 
 pinbegin "opensuse"
 pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/12.2/repo/oss/boot/i386/loader/linux"     "12.2/repo/oss/boot/i386/loader/linux"
@@ -247,13 +247,13 @@ pinget "opensuse" "https://mirror.rackspace.com/opensuse/distribution/leap/42.2/
 
 pinget "opensuse" "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"   "tumbleweed/repo/oss/boot/x86_64/loader/linux"
 pinget "opensuse" "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/initrd"  "tumbleweed/repo/oss/boot/x86_64/loader/initrd"
-pinroot "opensuse" "QmZZcRiSUkrUU88puLhJTTWTaoboZFi5h7SEvSLXBtvdoX"
+pinroot "opensuse" "QmXc9Bh86vxSEBk1aN7xixbBEPCW8tv5U2dvEanjPSTdQh"
 
 pinbegin "parrotsec"
 parrotsec_version=3.4.1
 pinget "parrotsec" "http://mirrordirector.archive.parrotsec.org/parrot/pool/iso/3.4.1/Parrot-netboot-${parrotsec_version}_amd64.iso" "Parrot-netboot-${parrotsec_version}_amd64.iso"
 
-pinroot "parrotsec" "QmTNiGnyyraFSNiQTHNVGZqnheVsD6JaFkeDQm98FM2Roo"
+pinroot "parrotsec" "QmWMedjnaY8sexzFYRRKf2oq6HR1rsn7UF7DHxPDsKf6C2"
 
 pinbegin "utils"
 clonezilla_version=2.4.7-8
