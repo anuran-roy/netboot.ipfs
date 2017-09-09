@@ -1,26 +1,26 @@
 # Frequently Asked Questions
 
 ## What is this?
-netboot.ipfs is a fork of [netboot.xyz](http://www.netboot.xyz) that uses [IPFS](https://ipfs.io) gateway located in local network instead of internet-based CDN to get system images.
+netboot.ipfs is a fork of [netboot.xyz](http://www.netboot.xyz) that uses an [IPFS](https://ipfs.io) gateway located in the local network instead of an internet-based CDN to get system images.
 
 ## What is [netboot.xyz](http://www.netboot.xyz)?
-netboot.xyz is tool that allows you to boot your favorite Operating System's installer or various utilities over the network with minimal overhead and all from a single menu system. It's similar to various tools netbooting tools of the past like boot.kernel.org with a lot more flexibility.
+netboot.xyz is a tool that allows you to boot your favorite Operating System's installer or various utilities over the network with minimal overhead and all from a single menu system. It's similar to various netbooting tools of the past like boot.kernel.org with a lot more flexibility.
 
-## What is the diference?
-While the original netboot.xyz is simpler for one-time setups it needs to download system images from the internet each time they are started. Many images are around 700MiB in size, with 20 machines in a single room downloading that image would result in 14GiB of internet traffic. Using local [IPFS](https://ipfs.io) gateway the image is downloaded only once. Of course this comes with the inconvinience of having to setup local IPFS gateway.
+## What is the difference?
+While the original netboot.xyz is simpler for one-time setups it needs to download system images from the internet each time they are started. Many images are around 700MiB in size, with 20 machines in a single room downloading that image would result in 14GiB of internet traffic. Using a local [IPFS](https://ipfs.io) gateway the image is downloaded only once. Of course this comes with the inconvenience of having to setup a local IPFS gateway.
 
 ## How does this work?
-netboot.ipfs uses an open source tool called iPXE which allows to create complex boot systems using multiple network protocols including HTTP. Netboot.ipfs has small script embedded into iPXE binary, which downloads further menus from local IPFS gateway. When user selects an image to boot, bootloader requests it from the gateway by IPFS hash. By default the image will be cached on the gateway for some amount of time.
+netboot.ipfs uses an open source tool called iPXE which allows to create complex boot systems using multiple network protocols including HTTP. Netboot.ipfs has a small script embedded into the iPXE binary, which downloads further menus from local IPFS gateway. When the user selects an image to boot, bootloader requests it from the gateway by IPFS hash. By default the image will be cached on the gateway for some amount of time.
 
 ## Will my favorite distribution work?
-Usually you need three things to boot up an OS, the vmlinuz, the initramfs, and the rootfs.  Distributions that support an installer kernel hosted on a mirror are typically the easier ones to implement.  Distributions that only release as ISOs typically are harder to implement as we have to use memdisk to load it up into memory. For netboot.ipfs all required files need to be added to IPFS.
+Usually you need three things to boot up an OS: the vmlinuz, the initramfs, and the rootfs.  Distributions that support an installer kernel hosted on a mirror are typically the easier ones to implement.  Distributions that only release as ISOs typically are harder to implement as we have to use memdisk to load it up into memory. For netboot.ipfs all required files need to be added to IPFS.
 
 From [syslinux - memdisk](http://www.syslinux.org/wiki/index.php/MEMDISK): The majority of Linux based CD images will also fail to work with MEMDISK ISO emulation. Linux distributions require kernel and initrd files to be specified, as soon as these files are loaded the protected mode kernel driver(s) take control and the virtual CD will no longer be accessible. If any other files are required from the CD/DVD they will be missing, resulting in boot error(s). Linux distributions that only require kernel and initrd files function fully via ISO emulation, as no other data needs accessing from the virtual CD/DVD drive once they have been loaded. The boot loader has read all necessary files to memory by using INT 13h, before booting the kernel.
 
 You can read more about my thoughts and possible solutions [here](https://www.reversengineered.com/2016/01/07/booting-linux-isos-with-memdisk-and-ipxe/).
 
 ## My distribution uses ISOs for delivery, how can I see if they work?
-You can do a quick check by loading up netboot.xyz in a virtual environment baremetal.  Make sure you have plenty of RAM as you are loading the ISO into RAM.  Then select the iPXE command line and enter the following;
+You can do a quick check by loading up netboot.xyz in a virtual environment baremetal.  Make sure you have plenty of RAM as you are loading the ISO into RAM.  Then select the iPXE command line and enter the following:
 
     kernel https://boot.netboot.xyz/memdisk iso raw
     initrd http://url/to/iso
